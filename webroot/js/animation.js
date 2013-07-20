@@ -16,6 +16,8 @@ var delta = currentTime - lastTime;
 
 var skyImage = new Image();
 skyImage.src = "webroot/img/sky.png";
+var mountainImage1 = new Image();
+mountainImage1.src = "webroot/img/mountain1.png";
 
 var sprites = new Array();
 
@@ -46,6 +48,8 @@ var renderingLoop = function () {
     currentTime = +new Date();       
     delta = currentTime - lastTime;
     
+    context.clearRect(0, 0, canvas.width, canvas.height); 
+    
     for (var i = 0; i < sprites.length; ++i) {
         var sprite = sprites[i];
         sprite.updateAndRender(delta);
@@ -65,6 +69,30 @@ function Sprite(image, x, y, width, height) {
     this.y = y;
     this.width = width;
     this.height = height;
+    
+    this.getLeft = function() {
+        return this.x;
+    }
+    
+    this.getTop = function() {
+        return this.y;
+    }
+    
+    this.getWidth = function() {
+        return this.width;
+    }
+    
+    this.getHeight = function() {
+        return this.height;
+    }
+    
+    this.getRight = function() {
+        return this.getX() + this.getWidth();
+    }
+    
+    this.getBottom = function() {
+        return this.getY() + this.getHeight();
+    }
     
     this.update = function(delta) {
         
@@ -87,9 +115,9 @@ function Sprite(image, x, y, width, height) {
 function init() {
     
     var sky = new Sprite(skyImage, 0, 0, 720, 480);
+    var mountain1 = new Sprite(mountainImage1, 0, 0);
     
-    sprites = new Array(sky);
-    
+    sprites = new Array(sky, mountain1);
     
     renderingLoop();
 }
