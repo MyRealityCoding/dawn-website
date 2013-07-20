@@ -13,13 +13,22 @@ var intervalID = -1;
 var currentTime = +new Date();
 var lastTime = currentTime;
 var delta = currentTime - lastTime;
+var WALKER_COUNT = 20;
 
 var skyImage = new Image();
 skyImage.src = "webroot/img/sky.png";
 var mountainImage1 = new Image();
 mountainImage1.src = "webroot/img/mountain1.png";
+var mountainImage2 = new Image();
+mountainImage2.src = "webroot/img/mountain2.png";
+var zombieImage1 = new Image();
+zombieImage1.src = "webroot/img/zombie1.png";
+var zombieImage2 = new Image();
+zombieImage2.src = "webroot/img/zombie2.png";
 
-var sprites = new Array();
+var background = new Array();
+var walkers = new Array();
+var foreground = new Array();
 
 /* MAIN LOOP */
 
@@ -42,6 +51,13 @@ var QueueNewFrame = function () {
     }
 };
 
+function renderArray(data, delta) {
+    for (var i = 0; i < data.length; ++i) {
+        var sprite = data[i];
+        sprite.updateAndRender(delta);
+    }
+}
+
 var renderingLoop = function () {
     
     lastTime = currentTime;
@@ -50,13 +66,23 @@ var renderingLoop = function () {
     
     context.clearRect(0, 0, canvas.width, canvas.height); 
     
-    for (var i = 0; i < sprites.length; ++i) {
-        var sprite = sprites[i];
-        sprite.updateAndRender(delta);
-    }
+    renderArray(background, delta);
+    renderArray(walkers, delta);
+    renderArray(foreground, delta);
     
     QueueNewFrame();
 };
+
+function surrogateCtor() {}
+
+function extend(base, sub) {
+  // Copy the prototype from the base to setup inheritance
+  surrogateCtor.prototype = base.prototype;
+  // Tricky huh?
+  sub.prototype = new surrogateCtor();
+  // Remember the constructor property was set wrong, let's fix it
+  sub.prototype.constructor = sub;
+}
 
 
 
@@ -109,15 +135,64 @@ function Sprite(image, x, y, width, height) {
 }
 
 
+function Walker() {
+    
+    this.leftMode = Math.random() < 0.5;
+    
+    this.waitTime = 150000 * Math.random();
+    this.initialWaitTime = this.waitTime;
+    
+    if (this.leftMode) {
+        if (Math.random() < 0.5) {
+            Sprite.call(this, zombieImage1, 0, 400, 50, 70);
+        } else {
+            Sprite.call(this, zombieImage2, 0, 400, 50, 70);
+        }
+    } else {
+        if (Math.random() < 0.5) {
+            Sprite.call(this, zombieImage1, 0, 400, 50, 70);
+        } else {
+            Sprite.call(this, zombieImage2, 0, 400, 50, 70);
+        }
+    }
+    
+    this.speed = 0.05;
+    
+    this.walkTime = 0;
+    
+    this.update = function(delta) {
+        
+        this.waitTime -= delta;
+        
+        if (this.waitTime < 1) {
+            this.walkTime+=0.1 * Math.random();
+            this.x += this.speed + Math.abs(Math.sin(this.walkTime));
+        }
+        
+        if (this.x > canvas.width) {
+            this.x = -(this.width);
+            this.waitTime = this.initialWaitTime;
+        }
+    };
+}
+
+extend(Sprite, Walker);
 
 /* START */
 
 function init() {
     
     var sky = new Sprite(skyImage, 0, 0, 720, 480);
-    var mountain1 = new Sprite(mountainImage1, 0, 0);
+    var mountain1 = new Sprite(mountainImage1, 0, 290, 720, 200);
+    var mountain2 = new Sprite(mountainImage2, 0, 380, 720, 90);
     
-    sprites = new Array(sky, mountain1);
+    background = new Array(sky, mountain2);
+    
+    for (var i = 0; i < WALKER_COUNT; ++i) {
+        walkers[i] = new Walker();
+    }
+    
+    foreground = new Array(mountain1);
     
     renderingLoop();
 }
