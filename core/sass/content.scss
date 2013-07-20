@@ -11,11 +11,21 @@ body {
 #wrapper {
     
     #center_container {
+        
+        div { text-align:center;}
+        
+        div#main_menu { display:none;}
+        div#footer{display:none;}
+        
+        img#banner {
+            margin-top:70px;
+        }
+        
         margin:auto;
         width:720px;
         margin-top:100px;
         z-index:50;
-        background:none;
+        
         canvas {
             z-index:-1;
             position:fixed;

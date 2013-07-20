@@ -13,7 +13,9 @@ var intervalID = -1;
 var currentTime = +new Date();
 var lastTime = currentTime;
 var delta = currentTime - lastTime;
-var WALKER_COUNT = 20;
+
+var WALKER_COUNT = 50;
+var CLOUD_COUNT = 10;
 
 var skyImage = new Image();
 skyImage.src = "webroot/img/sky.png";
@@ -25,9 +27,22 @@ var zombieImage1 = new Image();
 zombieImage1.src = "webroot/img/zombie1.png";
 var zombieImage2 = new Image();
 zombieImage2.src = "webroot/img/zombie2.png";
+var zombieImage3 = new Image();
+zombieImage3.src = "webroot/img/zombie3.png";
+var zombieImage4 = new Image();
+zombieImage4.src = "webroot/img/zombie4.png";
+var shadow = new Image();
+shadow.src = "webroot/img/shadow.png";
+var cloudImage1 = new Image();
+cloudImage1.src = "webroot/img/cloud1.png";
+var cloudImage2 = new Image();
+cloudImage2.src = "webroot/img/cloud2.png";
+var cloudImage3 = new Image();
+cloudImage3.src = "webroot/img/cloud3.png";
 
 var background = new Array();
 var walkers = new Array();
+var clouds = new Array();
 var foreground = new Array();
 
 /* MAIN LOOP */
@@ -67,6 +82,7 @@ var renderingLoop = function () {
     context.clearRect(0, 0, canvas.width, canvas.height); 
     
     renderArray(background, delta);
+    renderArray(clouds, delta);
     renderArray(walkers, delta);
     renderArray(foreground, delta);
     
@@ -83,8 +99,6 @@ function extend(base, sub) {
   // Remember the constructor property was set wrong, let's fix it
   sub.prototype.constructor = sub;
 }
-
-
 
 /* CLASSES */
 
@@ -135,7 +149,49 @@ function Sprite(image, x, y, width, height) {
 }
 
 
+function Cloud() {
+    
+    var image = cloudImage1;
+    
+    var result = Math.round(Math.random() * 2);
+    
+    switch (result) {
+        case 0:
+            image = cloudImage1;
+            break;
+        case 1:
+            image = cloudImage2;
+            break;
+        case 2:
+            image = cloudImage3;
+            break;
+    }
+    
+    this.speed = 0.3 * Math.random();
+    this.initialWaitTime = this.waitTime;
+    
+    var randWidth = 50 + 50 * Math.random();
+    var randHeight = 20 + 20 * Math.random();
+    
+    
+    Sprite.call(this, image, canvas.width * Math.random(), Math.random() * 220 + 270, randWidth, randHeight);
+    
+    this.update = function(delta) {
+         
+        this.x += this.speed;
+
+        if (this.x > canvas.width) {
+            this.x = -this.width;
+            this.y = Math.random() * 220 + 270;
+        }
+         
+    }
+}
+
+
 function Walker() {
+    
+    var randomSize = 15 * Math.random();
     
     this.leftMode = Math.random() < 0.5;
     
@@ -144,19 +200,19 @@ function Walker() {
     
     if (this.leftMode) {
         if (Math.random() < 0.5) {
-            Sprite.call(this, zombieImage1, 0, 400, 50, 70);
+            Sprite.call(this, zombieImage1, 0, 400 + randomSize, 50 - randomSize, 70 - randomSize);
         } else {
-            Sprite.call(this, zombieImage2, 0, 400, 50, 70);
+            Sprite.call(this, zombieImage2, 0, 400 + randomSize, 50 - randomSize, 70 - randomSize);
         }
     } else {
         if (Math.random() < 0.5) {
-            Sprite.call(this, zombieImage1, 0, 400, 50, 70);
+            Sprite.call(this, zombieImage3, canvas.width, 400 + randomSize, 50 - randomSize, 70 - randomSize);
         } else {
-            Sprite.call(this, zombieImage2, 0, 400, 50, 70);
+            Sprite.call(this, zombieImage4, canvas.width, 400 + randomSize, 50 - randomSize, 70 - randomSize);
         }
     }
     
-    this.speed = 0.05;
+    this.speed = 0.04 + 0.2 * Math.random();
     
     this.walkTime = 0;
     
@@ -166,25 +222,37 @@ function Walker() {
         
         if (this.waitTime < 1) {
             this.walkTime+=0.1 * Math.random();
-            this.x += this.speed + Math.abs(Math.sin(this.walkTime));
+            var factor = this.speed + Math.abs(Math.sin(this.walkTime));
+            if (this.leftMode) {
+                this.x += factor;
+            } else {
+                this.x -= factor;
+            }
         }
         
-        if (this.x > canvas.width) {
+        if (this.leftMode && this.x > canvas.width) {
             this.x = -(this.width);
             this.waitTime = this.initialWaitTime;
+        } else if (this.x + this.width < 0) {
+            this.x = canvas.width;
+            this.waitTime = this.initialWaitTime;
         }
+
     };
+
 }
 
 extend(Sprite, Walker);
+extend(Sprite, Cloud);
 
 /* START */
 
 function init() {
     
     var sky = new Sprite(skyImage, 0, 0, 720, 480);
+    var shade = new Sprite(shadow, 0, 0, 720, 480);
     var mountain1 = new Sprite(mountainImage1, 0, 290, 720, 200);
-    var mountain2 = new Sprite(mountainImage2, 0, 380, 720, 90);
+    var mountain2 = new Sprite(mountainImage2, 0, 180, 720, 300);
     
     background = new Array(sky, mountain2);
     
@@ -192,7 +260,11 @@ function init() {
         walkers[i] = new Walker();
     }
     
-    foreground = new Array(mountain1);
+    for (var i = 0; i < CLOUD_COUNT; ++i) {
+        clouds[i] = new Cloud();
+    }
+    
+    foreground = new Array(mountain1, shade);
     
     renderingLoop();
 }

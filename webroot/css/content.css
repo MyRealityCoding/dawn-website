@@ -8,8 +8,15 @@ body {
   margin: auto;
   width: 720px;
   margin-top: 100px;
-  z-index: 50;
-  background: none; }
+  z-index: 50; }
+  #wrapper #center_container div {
+    text-align: center; }
+  #wrapper #center_container div#main_menu {
+    display: none; }
+  #wrapper #center_container div#footer {
+    display: none; }
+  #wrapper #center_container img#banner {
+    margin-top: 70px; }
   #wrapper #center_container canvas {
     z-index: -1;
     position: fixed;
