@@ -1,0 +1,147 @@
+/* 
+    Document   : Content
+    Created on : Dec 31, 2012, 12:14:25 AM
+    Author     : miguel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* Default Configuration (Fonts etc.) */
+
+@font-face {
+    font-family: pixel;
+    src: url('../Files/Fonts/minecraft.ttf');	
+    src: url("../Files/Fonts/minecraft.eot");
+    src: local("☺"),
+    url("../Files/Fonts/minecraft.woff") format("woff"),
+    url("../Files/Fonts/minecraft.otf") format("opentype"),
+    url("../Files/Fonts/minecraft.svg#minecraft") format("svg");
+}
+
+html, body {
+    font-family: pixel;
+    color:white;
+    margin:0px;
+    padding:0px;
+    background:url('../Img/background.png') center center no-repeat black fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.../Img/background.png', sizingMethod='scale');
+   -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../Img/background.png', sizingMethod='scale')";
+    text-shadow: 0px 2px 3px black;
+    font-size:20px;
+}
+
+/* Template Container */
+
+div#wrapper {
+    padding-top:40px;
+    
+}
+
+div#center_container {
+    width:800px;
+    margin:auto;
+    text-align:center;
+}
+
+div#banner {
+    width:800px;
+    height:200px;
+    background: url('../Img/banner.png') no-repeat center center;
+    margin:auto;
+}
+
+div#version {
+    font-size:14px;
+    color:#ccc;
+    margin-left:5px;
+    margin-bottom:10px;
+}
+
+div#main_menu {
+    text-align:left;
+}
+
+div#main_menu ul {
+    list-style: none;
+    margin:0px;
+    padding:0px;
+}
+
+div#main_menu ul li {
+    display:inline-block;
+    margin-right:60px;
+    margin-top:40px;
+    margin-bottom:40px;
+}
+
+div#main_menu ul li a {
+    font-size:30px;
+    
+}
+
+div#content {
+    text-align:left;
+    line-height:42px;
+    color:#ccc;
+    text-align: justify;
+}
+
+div#footer {
+    text-align:left;
+    font-size:12px;
+    margin-top:60px;
+    margin-bottom:30px;
+    color:#aaa;
+}
+
+div#footer a {
+    margin-left:15px;
+}
+
+/* Buttons */
+
+div.button {
+    
+}
+
+a.button.enabled {
+    
+}
+
+a.button.disabled {
+    
+}
+
+/* Tags (h1, h2, h3, a, p...) */
+
+a {
+    color:yellowgreen;
+    text-decoration: none;
+}
+
+a:hover {
+    color:goldenrod;
+}
+
+a.disabled, a.disabled:hover {
+    color:#666;
+    opacity:0.2;
+    text-decoration:none;
+    cursor:default;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color:rgb(133, 133, 133);;
+}
+
+p {
+    
+}
+
+ul li {
+    list-style:square;
+}
