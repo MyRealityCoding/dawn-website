@@ -129,19 +129,20 @@ abstract class PageLayout {
                        <head>
                           <title>' . $this->titleForLayout . '</title>
                           <link  rel="icon" type="image/png" href="' . $this->imagePath . $this->icon . '"/>';
-
-        foreach ($this->scripts as $script) {            
-            $result .= '<script type="text/javascript" src="' . $this->scriptPath . $script . '.js"></script>';           
-        }
-        
+       
         foreach ($this->styles as $style) {
             $result .= '<link rel="stylesheet" href="' . $this->stylePath . $style . '.css" type = "text/css"/>';  
         }
                  
         $result .= '  </head>
                        <body>
-                          ' . $this->generateTemplate($this->content) . '
-                       </body>
+                          ' . $this->generateTemplate($this->content);
+        
+        foreach ($this->scripts as $script) {            
+            $result .= '<script type="text/javascript" src="' . $this->scriptPath . $script . '.js"></script>';           
+        }
+                       
+        $result .=     '</body>
                     </html>';
          
          echo $result;

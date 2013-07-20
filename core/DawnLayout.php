@@ -16,6 +16,8 @@ class DawnLayout extends PageLayout {
         $this->addStyle('content');
         $this->addStyle('progress-bar');
         $this->addStyle('team-view');
+        
+        $this->addScript('animation');
     }
     
     
@@ -50,7 +52,7 @@ class DawnLayout extends PageLayout {
         
         $result = '<div id="wrapper">
                       <div id="center_container">
-                         <div id="banner"></div>                         
+                         <canvas id="canvas">Error. HTML5 is not supported by your browser.</canvas>                  
                          <div id="main_menu">' . $this->generateMainMenu($links) . '</div>
                          <div id="content">' . $content . '</div>
                          <div id="footer">' . $this->generateFooterMenu() . '</div>
