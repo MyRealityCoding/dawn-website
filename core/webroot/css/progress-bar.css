@@ -28,7 +28,7 @@ td.progress_element {
 td.progress_element div.content {
     height:41px;
     margin-bottom:-42px;
-    background:url('../Img/gradient.png') bottom center repeat-x #657c35;
+    background:url('../img/gradient.png') bottom center repeat-x #657c35;
 }
 
 td.progress_element.undone {
@@ -43,4 +43,3 @@ td.progress_element.active {
 
 td.progress_element.done {
     color:white;
-}

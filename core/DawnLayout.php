@@ -33,7 +33,7 @@ class DawnLayout extends PageLayout {
         $links = array(
             array(
                 'label' => 'Play',
-                'href' => 'index.php',
+                'href' => '/play',
                 'class' => 'play'
             ),
             array(
@@ -80,7 +80,7 @@ class DawnLayout extends PageLayout {
     
     
     private function generateFooterMenu() {
-        $links = '<a href="impressum.php">Impressum</a>';
+        $links = '<a href="/impressum">Impressum</a>';
         $links .= '<a href="http://my-reality.de">Blog</a>';
         return 'Design by Miguel Gonzalez, &copy; 2013' . $links;
     }
