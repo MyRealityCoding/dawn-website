@@ -1,0 +1,9 @@
+body, html {
+  background-color: black;
+  color: white;
+  padding: 0px;
+  margin: 0px; }
+
+#wrapper #center_container {
+  margin: auto;
+  width: 720px; }
