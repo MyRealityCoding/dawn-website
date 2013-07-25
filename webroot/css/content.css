@@ -1,8 +1,16 @@
+@font-face {
+  font-family: '8bit-wonder';
+  src: url("../files/8-bit_wonder-webfont.eot");
+  src: url("../files/8-bit_wonder-webfont.eot?#iefix") format("embedded-opentype"), url("../files/8-bit_wonder-webfont.woff") format("woff"), url("../files/8-bit_wonder-webfont.ttf") format("truetype"), url("../files/8-bit_wonder-webfont.svg#8bit_wondernominal") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 body {
   background-color: black;
   color: white;
   padding: 0px;
-  margin: 0px; }
+  margin: 0px;
+  font-family: '8bit-wonder'; }
 
 #wrapper #center_container {
   margin: auto;
@@ -16,7 +24,7 @@ body {
   #wrapper #center_container div#footer {
     display: none; }
   #wrapper #center_container img#banner {
-    margin-top: 70px; }
+    margin-top: 120px; }
   #wrapper #center_container canvas {
     z-index: -1;
     position: fixed;
@@ -25,10 +33,10 @@ body {
 
 .progress {
   margin: auto;
-  opacity: 0.9;
-  margin-top: 30px;
-  width: 74% !important;
-  background-color: #090909;
+  margin-top: 40px;
+  width: 69% !important;
+  background-image: url("../img/transparent.png");
+  background-repeat: repeat-xy;
   border: 5px solid black;
   border-radius: 5px; }
   .progress .cell {
@@ -38,7 +46,10 @@ body {
     .progress .cell .caption {
       padding-top: 10px;
       padding-bottom: 10px;
-      color: #4b2a4d; }
+      color: #4b2a4d;
+      font-family: '8bit-wonder';
+      font-size: 8px;
+      text-shadow: 0px 1px 4px black; }
     .progress .cell .ui-progressbar-value {
       background-image: url(../img/progress.png);
       background-position: center center;
