@@ -3,7 +3,7 @@
 include_once ('core/core.php');
 
 
-$progress = '<div class="progress"></div>';
+$progress = '<div class="progress"><div class="loading">Loading progress...</div></div>';
 $progress .= "<script type='text/javascript'>
         $('.progress').icebearProgress({
             datasource : 'proxy.php?url=https://raw.github.com/MyRealityCoding/dawn/master/meta.json',

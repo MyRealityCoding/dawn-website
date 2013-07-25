@@ -24,7 +24,7 @@ body {
   #wrapper #center_container div#footer {
     display: none; }
   #wrapper #center_container img#banner {
-    margin-top: 120px; }
+    margin-top: 150px; }
   #wrapper #center_container canvas {
     z-index: -1;
     position: fixed;
@@ -39,6 +39,12 @@ body {
   background-repeat: repeat-xy;
   border: 5px solid black;
   border-radius: 5px; }
+  .progress .loading {
+    font-size: 10px;
+    text-align: center;
+    color: #4b2a4d;
+    padding: 9px;
+    text-shadow: 0px 1px 4px black; }
   .progress .cell {
     border-right: 5px solid black; }
     .progress .cell.last {
