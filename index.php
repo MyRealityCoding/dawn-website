@@ -34,12 +34,20 @@ $progress .= "<script type='text/javascript'>
                 }, 1000);
             }
         });
-        $('#canvas').css('opacity', 0);
-        $('#canvas').animate({
+        $('#canvas').css('opacity', 0)
+        .animate({
             opacity : '1.0'
         }, 4000);
         
-
+         $('#banner').css('opacity', 0)
+        .animate({
+            opacity : '1.0'
+        }, 2000);
+        
+        $('.progress').css('opacity', 0)
+        .animate({
+                   opacity : '1.0'
+               }, 1500);
 </script>";
 
 
