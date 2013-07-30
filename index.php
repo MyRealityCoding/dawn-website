@@ -34,7 +34,15 @@ $progress .= "<script type='text/javascript'>
                 }, 1000);
             }
         });
-        </script>";
+        $('#canvas').css('opacity', 0);
+        $('#canvas').animate({
+            opacity : '1.0'
+        }, 4000);
+        
+
+</script>";
+
+
 
 $layout->setTitle('Rise of the dead');
 $layout->addContent('<img id="banner" src="webroot/img/banner.png" />');
