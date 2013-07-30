@@ -6,21 +6,75 @@ body {
     color:white;
     padding:0px;
     margin:0px;
+    font-family : '8bit-wonder';
 }
 
 #wrapper {
     
     #center_container {
+        
+        div { text-align:center;}
+        
+        div#main_menu { display:none;}
+        div#footer{display:none;}
+        
+        img#banner {
+            margin-top:150px;
+        }
+        
         margin:auto;
         width:720px;
         margin-top:100px;
         z-index:50;
-        background:none;
+        
         canvas {
             z-index:-1;
             position:fixed;
             width:720px;
             height:480px;
+        }
+    }
+}
+
+.progress {
+    margin:auto;
+    margin-top:40px;
+    width:69% !important;
+    background-image:url('../img/transparent.png');
+    background-repeat:repeat-xy;
+    border: 5px solid black;
+    border-radius:5px;
+    
+    .loading {
+        font-size:10px;
+        text-align:center;
+        color:#4b2a4d;
+        padding:9px;
+        text-shadow:0px 1px 4px black;
+    }
+
+    .cell {
+        
+        &.last {
+            border:none;
+        }
+        
+        border-right:5px solid black;
+    
+        .caption {
+            padding-top:10px;
+            padding-bottom:10px;
+            color:#4b2a4d;
+            font-family : '8bit-wonder';
+            font-size:8px;
+            text-shadow:0px 1px 4px black;
+            
+        }
+        
+        .ui-progressbar-value {
+            background-image:url(../img/progress.png);
+            background-position: center center;
+            background-repeat:repeat-x;
         }
     }
 }

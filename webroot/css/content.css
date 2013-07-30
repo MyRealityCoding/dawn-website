@@ -1,17 +1,62 @@
+@font-face {
+  font-family: '8bit-wonder';
+  src: url("../files/8-bit_wonder-webfont.eot");
+  src: url("../files/8-bit_wonder-webfont.eot?#iefix") format("embedded-opentype"), url("../files/8-bit_wonder-webfont.woff") format("woff"), url("../files/8-bit_wonder-webfont.ttf") format("truetype"), url("../files/8-bit_wonder-webfont.svg#8bit_wondernominal") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 body {
   background-color: black;
   color: white;
   padding: 0px;
-  margin: 0px; }
+  margin: 0px;
+  font-family: '8bit-wonder'; }
 
 #wrapper #center_container {
   margin: auto;
   width: 720px;
   margin-top: 100px;
-  z-index: 50;
-  background: none; }
+  z-index: 50; }
+  #wrapper #center_container div {
+    text-align: center; }
+  #wrapper #center_container div#main_menu {
+    display: none; }
+  #wrapper #center_container div#footer {
+    display: none; }
+  #wrapper #center_container img#banner {
+    margin-top: 150px; }
   #wrapper #center_container canvas {
     z-index: -1;
     position: fixed;
     width: 720px;
     height: 480px; }
+
+.progress {
+  margin: auto;
+  margin-top: 40px;
+  width: 69% !important;
+  background-image: url("../img/transparent.png");
+  background-repeat: repeat-xy;
+  border: 5px solid black;
+  border-radius: 5px; }
+  .progress .loading {
+    font-size: 10px;
+    text-align: center;
+    color: #4b2a4d;
+    padding: 9px;
+    text-shadow: 0px 1px 4px black; }
+  .progress .cell {
+    border-right: 5px solid black; }
+    .progress .cell.last {
+      border: none; }
+    .progress .cell .caption {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #4b2a4d;
+      font-family: '8bit-wonder';
+      font-size: 8px;
+      text-shadow: 0px 1px 4px black; }
+    .progress .cell .ui-progressbar-value {
+      background-image: url(../img/progress.png);
+      background-position: center center;
+      background-repeat: repeat-x; }

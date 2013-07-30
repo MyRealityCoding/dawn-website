@@ -17,7 +17,10 @@ class DawnLayout extends PageLayout {
         $this->addStyle('progress-bar');
         $this->addStyle('team-view');
         
-        $this->addScript('animation');
+        $this->addScript('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
+        $this->addScript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js');
+        $this->addScript('http://dev.my-reality.de/jquery/icebearjs/1.1/jquery.icebearjs.min.js');
+        $this->addScript('webroot/js/animation.js');
     }
     
     
@@ -52,7 +55,7 @@ class DawnLayout extends PageLayout {
         
         $result = '<div id="wrapper">
                       <div id="center_container">
-                         <canvas id="canvas">Error. HTML5 is not supported by your browser.</canvas>                  
+                         <canvas width=720" height="480" id="canvas">Error. HTML5 is not supported by your browser.</canvas>                  
                          <div id="main_menu">' . $this->generateMainMenu($links) . '</div>
                          <div id="content">' . $content . '</div>
                          <div id="footer">' . $this->generateFooterMenu() . '</div>
