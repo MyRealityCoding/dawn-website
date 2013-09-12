@@ -50,10 +50,25 @@ $progress .= "<script type='text/javascript'>
                }, 1500);
 </script>";
 
+$sound = '<script type="text/javascript">
+            function play() {
+     
+            if (window.HTMLAudioElement) {
+              var snd = new Audio("");
 
+              if(snd.canPlayType("audio/mp3")) {
+                snd = new Audio("dawn.mp3");
+              }
+
+              snd.play();
+            }
+            }
+            play();
+          </script>';
 
 $layout->setTitle('Rise of the dead');
 $layout->addContent('<img id="banner" src="webroot/img/banner.png" />');
 $layout->addContent($progress);
+$layout->addContent($sound);
 $layout->render();
 ?>
